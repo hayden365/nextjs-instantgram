@@ -1,3 +1,4 @@
+import { resolve } from "path";
 import { client } from "./sanity";
 
 type OAuthUser = {
@@ -9,6 +10,7 @@ type OAuthUser = {
 };
 
 export async function addUser({ id, username, email, name, image }: OAuthUser) {
+	//존재하지 않으면 생성해줘
 	return client.createIfNotExists({
 		_id: id,
 		_type: "user",
@@ -20,4 +22,16 @@ export async function addUser({ id, username, email, name, image }: OAuthUser) {
 		followers: [],
 		bookmarks: [],
 	});
+}
+
+export async function getUserByUsername(username: string) {
+	return client.fetch(
+		`*[_type == 'user' && username =="${username}"][0]{
+      ...,
+      "id":_id,
+      following[]->{username, image},
+      followers[]->{username, image},
+      "bookmarks":bookmarks[]->_id
+    }`,
+	);
 }
