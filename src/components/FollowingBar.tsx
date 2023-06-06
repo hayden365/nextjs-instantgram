@@ -1,19 +1,17 @@
 "use client";
-import { HomeUser } from "@/model/user";
 import Link from "next/link";
 import { PropagateLoader } from "react-spinners";
-import useSWR from "swr";
 import Avatar from "./Avatar";
 import ScrollableBar from "./ui/ScrollableBar";
+import useMe from "@/hooks/me";
 
 // 1. 클라이언트 컴포넌트에서 백엔드에게 api/me 사용자의 정보를 얻어옴
 // 2. 백엔드에서는 현재 로그인된 사용자의 세션 정보를 이용
 // 3. 백엔드에서 사용자의 상세 정보를 Sanity에서 가지고 옴(followings)
 // 4. 클라이언트 컴포넌트에서 followings의 정보를 UI에 보여줌
 export default function FollowingBar() {
-	const { data, isLoading: loading, error } = useSWR<HomeUser>("/api/me");
-	// const users = data?.following;
-	const users = data?.following;
+	const { user, isLoading: loading, error } = useMe();
+	const users = user?.following;
 	return (
 		<section className="w-full flex justify-center items-center p-4 shadow-sm shadow-neutral-300 mb-4 rounded-lg min-h-[90px] overflow-x-auto relative z-0">
 			{loading ? (
