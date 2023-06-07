@@ -15,6 +15,7 @@ export async function middleware(req: NextRequest) {
 			"callbackUrl",
 			`${basePath}${pathname}${search}`,
 		);
+		console.log(signInUrl);
 		return NextResponse.redirect(signInUrl);
 	}
 
@@ -22,7 +23,7 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-	mathcer: [
+	matcher: [
 		"/new",
 		"/",
 		"/api/bookmarks",
