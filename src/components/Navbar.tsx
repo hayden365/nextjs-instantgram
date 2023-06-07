@@ -37,7 +37,7 @@ export default function Navbar() {
 
 	return (
 		<div className="flex justify-between items-center px-6">
-			<Link href="/">
+			<Link href="/" aria-label="Home">
 				<h1 className="text-3xl font-bold">Instantgram</h1>
 			</Link>
 			<nav>
