@@ -47,7 +47,7 @@ export default function UserPosts({ user: { username } }: Props) {
 				))}
 			</ul>
 			<CacheKeysContext.Provider
-				value={{ postsKey: `/api/users/${username}/{query}` }}
+				value={{ postsKey: `/api/users/${username}/${query}` }}
 			>
 				<PostGrid />
 			</CacheKeysContext.Provider>

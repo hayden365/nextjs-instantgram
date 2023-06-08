@@ -15,7 +15,6 @@ export async function middleware(req: NextRequest) {
 			"callbackUrl",
 			`${basePath}${pathname}${search}`,
 		);
-		console.log(signInUrl);
 		return NextResponse.redirect(signInUrl);
 	}
 
